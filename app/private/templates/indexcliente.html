@@ -1,8 +1,13 @@
+
+{% from "base/_helpers.html" import generarForm %}
 {% extends "base/base.html" %}
 {% block titulo %}Clientes{% endblock %}
 {% block contenido %}
 <h1>Clientes</h1>
 <div class="row">
+<form action="{{ url_for('private.indexcliente') }}" method="post">
+    {{ generarForm(form) }}
+</form>
 <table>
     <tr>
         <td>DNI</td>
