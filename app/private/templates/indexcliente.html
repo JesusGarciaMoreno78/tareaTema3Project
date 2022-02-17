@@ -3,6 +3,20 @@
 {% block contenido %}
 <h1>Clientes</h1>
 <div class="row">
+<table>
+    <tr>
+        <td>DNI</td>
+        <td>Nombre</td>
+        <td>Apellidos</td>
+        <td>Imagen</td>
+    </tr>
+    {% for clientes in clientes %}
+        <td>clientes.dni</td>
+        <td>clientes.nombre</td>
+        <td>clientes.apellidos</td>
+        <td>clientes.imagen</td>
+    {% endfor %}
 
+</table>
 </div>
 {% endblock %}
