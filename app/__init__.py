@@ -8,6 +8,7 @@ app = Flask(__name__)
 #pag 23 pps0303-Entrada de aula virtual
 #Establecer la cadena de conexion
 app = Flask(__name__)
+app.secret_key="clave"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost:5432/tareaTema3Projet'
 #desactivamos la gestion de notificaciones de SQLAlchemy
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
