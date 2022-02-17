@@ -10,11 +10,11 @@
         <td>Apellidos</td>
         <td>Imagen</td>
     </tr>
-    {% for clientes in clientes %}
-        <td>clientes.dni</td>
-        <td>clientes.nombre</td>
-        <td>clientes.apellidos</td>
-        <td>clientes.imagen</td>
+    {% for cliente in clientes %}
+        <td>{{ cliente.dni }}</td>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.apellidos }}</td>
+        <td>{{ cliente.imagen }}</td>
     {% endfor %}
 
 </table>
