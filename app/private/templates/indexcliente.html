@@ -3,25 +3,25 @@
 {% extends "base/base.html" %}
 {% block titulo %}Clientes{% endblock %}
 {% block contenido %}
-<h1>Clientes</h1>
-<div class="row">
-<form action="{{ url_for('private.indexcliente') }}" method="post">
-    {{ generarForm(form) }}
-</form>
-<table>
-    <tr>
-        <td>DNI</td>
-        <td>Nombre</td>
-        <td>Apellidos</td>
-        <td>Imagen</td>
-    </tr>
-    {% for cliente in clientes %}
-        <td>{{ cliente.dni }}</td>
-        <td>{{ cliente.nombre }}</td>
-        <td>{{ cliente.apellidos }}</td>
-        <td>{{ cliente.imagen }}</td>
-    {% endfor %}
+    <h1>Clientes</h1>
+    <div class="row">
+    <form action="{{ url_for('private.indexcliente') }}" method="post">
+        {{ generarForm(form) }}
+    </form>
+    <table>
+        <tr>
+            <td>DNI</td>
+            <td>Nombre</td>
+            <td>Apellidos</td>
+            <td>Imagen</td>
+        </tr>
+        {% for cliente in clientes %}
+            <td>{{ cliente.dni }}</td>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.apellidos }}</td>
+            <td>{{ cliente.imagen }}</td>
+        {% endfor %}
 
-</table>
-</div>
+    </table>
+    </div>
 {% endblock %}
