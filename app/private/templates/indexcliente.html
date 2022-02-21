@@ -6,7 +6,8 @@
     <h1>Clientes</h1>
     <div class="row">
     <form action="{{ url_for('private.indexcliente') }}" method="post">
-        {{ generarForm(form) }}
+        {{ generarForm(formFiltro) }}
+        <input type="submit"></input>
     </form>
     <table>
         <tr>
@@ -16,10 +17,13 @@
             <td>Imagen</td>
         </tr>
         {% for cliente in clientes %}
-            <td>{{ cliente.dni }}</td>
-            <td>{{ cliente.nombre }}</td>
-            <td>{{ cliente.apellidos }}</td>
-            <td>{{ cliente.imagen }}</td>
+            <tr>
+                <td>{{ cliente.dni }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellidos }}</td>
+                <td>{{ cliente.imagen }}</td>
+            </tr>
+
         {% endfor %}
 
     </table>
