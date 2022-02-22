@@ -27,6 +27,10 @@ def nuevoCliente():
 
     formnuevoCliente = NuevoCliente(CombinedMultiDict((request.files, request.form)))
     if formnuevoCliente.validate_on_submit():
+        encoded_bytes = base64.b64encode(formnuevoCliente.imagen.data.read())
+        if len(encoded_bytes) > 1024*1024:
+            formnuevoCliente.imagen.errors.append("Tamaño maximo 1MB")
+            return render_template("nuevoCliente.html", formnuevoCliente=formnuevoCliente)
         cliente = Cliente()
         cliente.dni = formnuevoCliente.dni.data
         cliente.nombre = formnuevoCliente.nombre.data
