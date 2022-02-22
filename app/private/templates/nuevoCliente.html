@@ -4,28 +4,10 @@
 {% block contenido %}
     <h1>Clientes</h1>
     <div class="row">
-        <form action="{{ url_for('private.nuevoCliente') }}" method="post">
-            {{ generarForm(formGenerarCliente) }}
-            <input type="submit"></input>
+        <form action="{{ url_for('private.nuevoCliente') }}" method="post" enctype="multipart/form-data">
+            {{ generarForm(formnuevoCliente) }}
+            <input type="submit" value="Guardar" class="btn btn-primary"/>
         </form>
 
-        <table>
-            <tr>
-                <td>DNI</td>
-                <td>Nombre</td>
-                <td>Apellidos</td>
-                <td>Imagen</td>
-            </tr>
-            {% for cliente in clientes %}
-                <tr>
-                    <td>{{ cliente.dni }}</td>
-                    <td>{{ cliente.nombre }}</td>
-                    <td>{{ cliente.apellidos }}</td>
-                    <td>{{ cliente.imagen }}</td>
-                </tr>
-
-            {% endfor %}
-
-        </table>
     </div>
 {% endblock %}

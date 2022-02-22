@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired, Length
+from flask_wtf.file import FileRequired, FileAllowed
+from wtforms import StringField, FileField
+from wtforms.validators import DataRequired, Length, ValidationError
 
 
 class FiltroCliente(FlaskForm):
@@ -11,7 +12,7 @@ class FiltroCliente(FlaskForm):
 
 
 
-class GenerarCliente(FlaskForm):
+class NuevoCliente(FlaskForm):
     ###los campos de la basede datos
     dni = StringField(label="DNI", validators=[
         DataRequired("Este campo no puede estar vacío"),
@@ -27,3 +28,12 @@ class GenerarCliente(FlaskForm):
     ])
     ## Falta la imagen
 
+    imagen = StringField(label="Imagen", validators=[
+        Length(message="La longitud no puede ser superior a 50 caracteres", max=50)
+            # FileRequired(message="El campo imagen es obligatorio"),
+            # FileAllowed(['jpg','png'], message="Solo jpg y png")
+        ])
+    # def validate_imagen(form,field):
+    #     max_length = 1024
+    #     if len(field.data.read()) > max_length:
+    #         raise ValidationError(f"El fichero no puede ser superior a {max_length}")

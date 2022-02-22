@@ -1,31 +1,30 @@
-
 {% from "base/_helpers.html" import generarForm %}
 {% extends "base/base.html" %}
 {% block titulo %}Clientes{% endblock %}
 {% block contenido %}
     <h1>Clientes</h1>
     <div class="row">
-    <form action="{{ url_for('private.indexcliente') }}" method="post">
-        {{ generarForm(formFiltro) }}
-        <input type="submit"></input>
-    </form>
-    <table>
-        <tr>
-            <td>DNI</td>
-            <td>Nombre</td>
-            <td>Apellidos</td>
-            <td>Imagen</td>
-        </tr>
-        {% for cliente in clientes %}
+        <form action="{{ url_for('private.indexcliente') }}" method="post">
+            {{ generarForm(formFiltro) }}
+            <input type="submit" value="Buscar" class="btn btn-primary"/>
+        </form>
+        <table>
             <tr>
-                <td>{{ cliente.dni }}</td>
-                <td>{{ cliente.nombre }}</td>
-                <td>{{ cliente.apellidos }}</td>
-                <td>{{ cliente.imagen }}</td>
+                <td>DNI</td>
+                <td>Nombre</td>
+                <td>Apellidos</td>
+                <td>Imagen</td>
             </tr>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.dni }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.apellidos }}</td>
+                    <td>{{ cliente.imagen }}</td>
+                </tr>
 
-        {% endfor %}
+            {% endfor %}
 
-    </table>
+        </table>
     </div>
 {% endblock %}
