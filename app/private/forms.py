@@ -28,12 +28,12 @@ class NuevoCliente(FlaskForm):
     ])
     ## Falta la imagen
 
-    imagen = StringField(label="Imagen", validators=[
-        Length(message="La longitud no puede ser superior a 50 caracteres", max=50)
-            # FileRequired(message="El campo imagen es obligatorio"),
-            # FileAllowed(['jpg','png'], message="Solo jpg y png")
+    imagen = FileField(label="Imagen", validators=[
+            FileRequired(message="El campo imagen es obligatorio"),
+            FileAllowed(['jpg','png'], message="Solo jpg y png")
         ])
-    # def validate_imagen(form,field):
-    #     max_length = 1024
-    #     if len(field.data.read()) > max_length:
-    #         raise ValidationError(f"El fichero no puede ser superior a {max_length}")
+    #Este metodo valida imagen si fuera validate_nombre validaría la variable 'nombre'
+    def validate_imagen(form,field):
+        max_length = 1024*1024
+        if len(field.data.read()) > max_length:
+            raise ValidationError(f"El fichero no puede ser superior a {max_length}")
