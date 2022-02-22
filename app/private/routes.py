@@ -31,10 +31,8 @@ def nuevoCliente():
         cliente.dni = formnuevoCliente.dni.data
         cliente.nombre = formnuevoCliente.nombre.data
         cliente.apellidos = formnuevoCliente.apellidos.data
-        cliente.imagen = formnuevoCliente.imagen.data
         encoded_bytes = base64.b64encode(formnuevoCliente.imagen.data.read())
         cliente.imagen = str(encoded_bytes).replace("b'", "").replace("'", "")
-        #tosdos los campos
         cliente.nuevoCliente()
         return redirect(url_for('private.indexcliente'))
     return render_template("nuevoCliente.html", formnuevoCliente=formnuevoCliente)

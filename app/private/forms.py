@@ -33,7 +33,7 @@ class NuevoCliente(FlaskForm):
             FileAllowed(['jpg','png'], message="Solo jpg y png")
         ])
     #Este metodo valida imagen si fuera validate_nombre validaría la variable 'nombre'
-    def validate_imagen(form,field):
-        max_length = 1024*1024
-        if len(field.data.read()) > max_length:
-            raise ValidationError(f"El fichero no puede ser superior a {max_length}")
+    # def validate_imagen(form,field):
+    #     max_length = 1024*1024
+    #     if len(field.data.read()) > max_length:
+    #         raise ValidationError(f"El fichero no puede ser superior a {max_length}")
