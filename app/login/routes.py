@@ -24,7 +24,7 @@ def nuevoUsuario():
             usuario.create()
             return redirect(url_for('private.indexcliente'))
         except Exception as e:
-            error = "No se ha podido iniciar sesión " + e.__str__()
+            error = "No se ha podido registrar usuario " + e.__str__()
     return render_template("nuevoUsuario.html", form=form, error=error)
 
 @login.route("/login/", methods=["GET","POST"])
@@ -32,11 +32,16 @@ def login():
     error = ""
     form = LogUsuarioForm(request.form)
     if form.validate_on_submit():
-        username = form.username.data
-        usuario = Usuario.get_by_username(username)
-
-        if usuario and usuario.check_password(form.password.data + PEEPER):
-            return redirect(url_for("private.indexcliente"))
-        else:
-            error = "Usuario y/o contraseña incorrecta"
+        try:
+            username = form.username.data
+            usuario = Usuario.get_by_username(username)
+            try:
+                if usuario and usuario.check_password(form.password.data + PEEPER):
+                    return redirect(url_for("private.indexcliente"))
+                else:
+                    error = "Usuario y/o contraseña incorrecta"
+            except Exception as e:
+                error = "no se pudo comprobar contraseña " + e.__str__()
+        except Exception as e:
+            error = "No se ha podido iniciar sesión " + e.__str__()
     return render_template("login.html", form=form, error=error)

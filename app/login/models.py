@@ -29,7 +29,7 @@ class Usuario(db.Model):
 # metodo: "get_by_username": recibe un username y devuelve el usuario que corresponda con ese username (método estático)
     @staticmethod
     def get_by_username(username):
-        return Usuario.query.get(username)
+        return Usuario.query.filter_by(username=username).first()
 
 # metodo: "set_password": recibe un password y asigna al atributo password el resultado de la función hash, aplicando una salt y con método “pbkdf2:sh256:260000”
     def set_password(self, password):

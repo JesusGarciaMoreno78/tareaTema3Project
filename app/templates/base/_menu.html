@@ -19,13 +19,10 @@
                       <li><a class="dropdown-item" href="{{ url_for('private.nuevoCliente') }}">NuevoCLiente</a></li>
                   </ul>
               </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Iniciar Sesisión</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ url_for('login.login') }}">Login</a></li>
-                      <li><a class="dropdown-item" href="{{ url_for('login.nuevoUsuario') }}">Registro</a></li>
-                  </ul>
-              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class = nav-item><a class="nav-link active" href="{{ url_for('login.login') }}">Login</a></li>
+              <li class = nav-item><a class="nav-link active" href="{{ url_for('login.nuevoUsuario') }}">Registro</a></li>
             </ul>
         </div>
     </div>
