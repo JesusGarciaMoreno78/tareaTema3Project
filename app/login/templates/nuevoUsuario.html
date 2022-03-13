@@ -1,0 +1,13 @@
+{% from "base/_helpers.html" import generarForm %}
+{% extends "base/base.html" %}
+{% block titulo %}Clientes{% endblock %}
+{% block contenido %}
+    <h1>Registro de usuarios</h1>
+    <div class="row">
+        <form action="{{ url_for('login.nuevoUsuario') }}" method="post" enctype="multipart/form-data">
+            {{ generarForm(form) }}
+            <input type="submit" value="Guardar" class="btn btn-primary"/>
+        </form>
+
+    </div>
+{% endblock %}
