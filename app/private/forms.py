@@ -26,7 +26,6 @@ class NuevoCliente(FlaskForm):
         DataRequired("Este campo no puede estar vacío"),
         Length(message="La longitud no puede ser superior a 50 caracteres", max=50)
     ])
-    ## Falta la imagen
 
     imagen = FileField(label="Imagen", validators=[
             FileRequired(message="El campo imagen es obligatorio"),

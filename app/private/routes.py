@@ -24,19 +24,21 @@ def indexcliente():
 
 @private.route("/nuevoCliente/", methods=["GET","POST"])
 def nuevoCliente():
-
+    error=""
     formnuevoCliente = NuevoCliente(CombinedMultiDict((request.files, request.form)))
-    if formnuevoCliente.validate_on_submit():
-        encoded_bytes = base64.b64encode(formnuevoCliente.imagen.data.read())
-        if len(encoded_bytes) > 1024*1024:
-            formnuevoCliente.imagen.errors.append("Tamaño maximo 1MB")
-            return render_template("nuevoCliente.html", formnuevoCliente=formnuevoCliente)
-        cliente = Cliente()
-        cliente.dni = formnuevoCliente.dni.data
-        cliente.nombre = formnuevoCliente.nombre.data
-        cliente.apellidos = formnuevoCliente.apellidos.data
-        encoded_bytes = base64.b64encode(formnuevoCliente.imagen.data.read())
-        cliente.imagen = str(encoded_bytes).replace("b'", "").replace("'", "")
-        cliente.nuevoCliente()
-        return redirect(url_for('private.indexcliente'))
-    return render_template("nuevoCliente.html", formnuevoCliente=formnuevoCliente)
+    try:
+        if formnuevoCliente.validate_on_submit():
+            encoded_bytes = base64.b64encode(formnuevoCliente.imagen.data.read())
+            if len(encoded_bytes) > 1024*1024:
+                formnuevoCliente.imagen.errors.append("Tamaño maximo 1MB")
+                return render_template("nuevoCliente.html", formnuevoCliente=formnuevoCliente)
+            cliente = Cliente()
+            cliente.dni = formnuevoCliente.dni.data
+            cliente.nombre = formnuevoCliente.nombre.data
+            cliente.apellidos = formnuevoCliente.apellidos.data
+            cliente.imagen = str(encoded_bytes).replace("b'", "").replace("'", "")
+            cliente.nuevoCliente()
+            return redirect(url_for('private.indexcliente'))
+    except Exception as e:
+        error=e
+    return render_template("nuevoCliente.html", formnuevoCliente=formnuevoCliente,error=error)
