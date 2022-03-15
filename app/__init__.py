@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 # pag 23 pps0303-Entrada de aula virtual
 app = Flask(__name__)
@@ -18,6 +19,7 @@ db = SQLAlchemy(app)
 # pag 25 pps0303-Entrada de aula virtual
 # Instanciar un objeto de la classe Migrate
 migrate = Migrate(app, db)
+login_manager = LoginManager(app)
 # Por qué si subo estos import con los de arriba no funcioana???????
 from .public import public
 from .private import private

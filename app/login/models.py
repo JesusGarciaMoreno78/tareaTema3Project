@@ -1,10 +1,11 @@
 #pag 24 pps0303-Entrada de aula virtual
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db
 
 
-class Usuario(db.Model):
+class Usuario(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), nullable=False, unique=True)
     password = db.Column(db.String(), nullable=False)

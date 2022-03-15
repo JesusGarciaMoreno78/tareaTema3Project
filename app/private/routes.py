@@ -1,6 +1,7 @@
 import base64
 
 from flask import render_template, request, redirect, url_for
+from flask_login import current_user
 from setuptools.command.dist_info import dist_info
 from werkzeug.datastructures import CombinedMultiDict
 
@@ -13,6 +14,8 @@ from .forms import FiltroCliente, NuevoCliente
 # Este es el decorador de Blueprint que nos llevará a private/indexcliente/
 @private.route("/indexcliente/", methods=["GET", "POST"])
 def indexcliente():
+    if not current_user.is_authenticated:
+        return redirect(url_for("login.login"))
     formFiltro = FiltroCliente(request.form)
     if formFiltro.validate_on_submit():
         dni = formFiltro.dni.data
@@ -24,6 +27,8 @@ def indexcliente():
 
 @private.route("/nuevoCliente/", methods=["GET","POST"])
 def nuevoCliente():
+    if not current_user.is_authenticated:
+        return redirect(url_for("login.login"))
     error=""
     formnuevoCliente = NuevoCliente(CombinedMultiDict((request.files, request.form)))
     try:
