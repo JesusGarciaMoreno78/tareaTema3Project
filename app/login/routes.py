@@ -35,7 +35,7 @@ def nuevoUsuario():
             usuario.apellidos = form.apellidos.data
             usuario.set_password(form.password.data + PEEPER)
             usuario.create()
-            return redirect(url_for('private.indexcliente'))
+            return redirect(url_for('login.login'))
         except Exception as e:
             error = "No se ha podido registrar usuario " # + e.__str__()
     return render_template("nuevoUsuario.html", form=form, error=error)
