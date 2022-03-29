@@ -11,6 +11,7 @@ class Usuario(db.Model, UserMixin):
     password = db.Column(db.String(), nullable=False)
     nombre = db.Column(db.String(20), nullable=False)
     apellidos = db.Column(db.String(50), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
 
 
 # metodo: "__str__": devuelve la concatenación de “apellidos, nombre”
