@@ -9,6 +9,6 @@ from .auth.decorator import admin_required
 @login_required
 @admin_required
 def adminindex():  # put application's code here
-    # if not current_user.is_admin:
-    #     abort(401)
+    if not current_user.is_admin:
+        abort(401)
     return render_template('adminindex.html')
