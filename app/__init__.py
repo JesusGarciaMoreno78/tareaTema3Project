@@ -24,6 +24,7 @@ login_manager = LoginManager(app)
 from .public import public
 from .private import private
 from .login import login
+from .admin import admin
 
 
 def create_app():
@@ -31,4 +32,5 @@ def create_app():
     app.register_blueprint(public)
     app.register_blueprint(private)
     app.register_blueprint(login)
+    app.register_blueprint(admin)
     return app
