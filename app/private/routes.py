@@ -22,6 +22,7 @@ def indexcliente():
         cliente = Cliente.query.filter_by(dni=dni)
         return render_template('indexcliente.html', formFiltro=formFiltro, clientes=cliente)
     else:
+        # Aqui habra que poner nuesro decorador decorador
         clientes = Cliente.query.all()
         return render_template("indexcliente.html", clientes=clientes, formFiltro=formFiltro)
 

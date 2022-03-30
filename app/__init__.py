@@ -24,11 +24,15 @@ login_manager = LoginManager(app)
 from .public import public
 from .private import private
 from .login import login
+from .admin import admin
 
-
+# @app.errorhandler(401)
+# def error_nauth(error):
+#     return render_template("error.html"),401
 def create_app():
     # Úlimo paso Blueprint (registrarlo)
     app.register_blueprint(public)
     app.register_blueprint(private)
     app.register_blueprint(login)
+    app.register_blueprint(admin)
     return app
