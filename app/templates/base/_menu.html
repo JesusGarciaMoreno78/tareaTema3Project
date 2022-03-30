@@ -1,6 +1,6 @@
 20 lines (20 sloc)  891 Bytes
 
-{% macro show_menu() %}
+{% macro show_menu(current_user) %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Tarea Tema 3</a>
@@ -13,13 +13,33 @@
                   <a class="nav-link active" aria-current="page" href="{{ url_for('private.indexcliente') }}">Home</a>
                 </li>
               <li class="nav-item dropdown">
+                   {% if not current_user.is_anonymous %}
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
                   <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="{{ url_for('private.indexcliente') }}">Listado</a></li>
                       <li><a class="dropdown-item" href="{{ url_for('private.nuevoCliente') }}">NuevoCLiente</a></li>
                   </ul>
+                  {% endif %}
               </li>
             </ul>
+            <ul class="navbar-nav ms-auto">
+            {% if current_user.is_anonymous %}
+              <li class = nav-item>
+                  <a class="nav-link active" href="{{ url_for('login.login') }}">Login</a>
+              </li>
+              <li class = nav-item>
+                  <a class="nav-link active" href="{{ url_for('login.nuevoUsuario') }}">Registro</a>
+              </li>
+            {% else %}
+              <li  class="nav-item">
+              {{ current_user.__str__() }}
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('login.logout') }}">Logout</a>
+                </li>
+            {% endif %}
+            </ul>
+
         </div>
     </div>
 </nav>
