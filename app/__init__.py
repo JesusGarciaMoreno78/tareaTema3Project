@@ -6,6 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 # pag 23 pps0303-Entrada de aula virtual
+from .log.log import configure_logging
+
 app = Flask(__name__)
 # en vez de clave poner una clave compleja
 app.secret_key = "clave"
@@ -20,6 +22,7 @@ db = SQLAlchemy(app)
 # Instanciar un objeto de la classe Migrate
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
+logger = configure_logging(app)
 # Por qué si subo estos import con los de arriba no funcioana???????
 from .public import public
 from .private import private

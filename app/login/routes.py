@@ -38,10 +38,13 @@ def nuevoUsuario():
             return redirect(url_for('login.login'))
         except Exception as e:
             error = "No se ha podido registrar usuario " # + e.__str__()
+
     return render_template("nuevoUsuario.html", form=form, error=error)
 
 @login.route("/login/", methods=["GET","POST"])
 def login():
+    app.logger.info("Mensaje de información")
+    msg = ""
     if current_user.is_authenticated:
         return redirect(url_for("private.indexcliente"))
     error = ""
@@ -52,13 +55,19 @@ def login():
             usuario = Usuario.get_by_username(username)
             try:
                 if usuario and usuario.check_password(form.password.data + PEEPER):
+                    app.logger.info(f"Inicio de sesión fallido del usuario {username}")
                     login_user(usuario, False)
                     return redirect(url_for("private.indexcliente"))
                 else:
+                    app.logger.warning(f"Inicio de sesión fallido del usuario {username}")
                     error = "Usuario y/o contraseña incorrecta"
             except Exception as e:
+                app.logger.exception(e.__str__())
                 error = "no se pudo comprobar contraseña " # + e.__str__()
         except Exception as e:
+            app.logger.exception(e.__str__())
             error = "No se ha podido iniciar sesión "# + e.__str__()
+
     return render_template("login.html", form=form, error=error)
+
 
