@@ -6,15 +6,17 @@
     <div class="row">
         <table>
             <tr>
-                <td>DNI</td>
+                <td>Username</td>
                 <td>Nombre</td>
                 <td>Apellidos</td>
+                <td>Es adminisrador</td>
             </tr>
-            {% for cliente in clientes %}
+            {% for usuario in usuarios %}
                 <tr>
-                    <td>{{ cliente.dni }}</td>
-                    <td>{{ cliente.nombre }}</td>
-                    <td>{{ cliente.apellidos }}</td>
+                    <td>{{ usuario.username }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.apellidos }}</td>
+                    <td>{{ usuario.is_admin }}</td>
                 </tr>
 
             {% endfor %}
