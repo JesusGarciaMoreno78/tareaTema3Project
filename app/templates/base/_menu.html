@@ -13,6 +13,11 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{{ url_for('private.indexcliente') }}">Home</a>
                 </li>
+                {% if current_user.is_admin %}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ url_for('admin.adminindex') }}">Usuarios</a>
+                </li>
+            {% endif %}
               <li class="nav-item dropdown">
                    {% if not current_user.is_anonymous %}
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
