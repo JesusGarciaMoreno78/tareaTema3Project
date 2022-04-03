@@ -1,0 +1,26 @@
+[2022-04-03 18:30:33,751.751]	 ERROR [	app.log_exception:1457]	 Exception on /login/ [GET]
+Traceback (most recent call last):
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\jesus\PycharmProjects\tareaTema3Project\app\login\routes.py", line 46, in login
+    app.logger.info("Mensaje de información")
+AttributeError: 'NoneType' object has no attribute 'info'
+[2022-04-03 18:30:52,803.803]	 ERROR [	app.log_exception:1457]	 Exception on /login/ [GET]
+Traceback (most recent call last):
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jesus\PycharmProjects\tema3FlaskProject\venv\lib\site-packages\flask\app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\jesus\PycharmProjects\tareaTema3Project\app\login\routes.py", line 46, in login
+    app.logger.info("Mensaje de información")
+AttributeError: 'NoneType' object has no attribute 'info'
