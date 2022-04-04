@@ -22,7 +22,7 @@ db = SQLAlchemy(app)
 # Instanciar un objeto de la classe Migrate
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
-logger = configure_logging("app")
+logger = configure_logging(__name__)
 # Por qué si subo estos import con los de arriba no funcioana???????
 from .public import public
 from .private import private

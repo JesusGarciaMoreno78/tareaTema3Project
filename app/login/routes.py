@@ -28,6 +28,7 @@ def nuevoUsuario():
     error = ""
     form = RegistroUsuarioForm(request.form)
     if form.validate_on_submit():
+        app.logger.info(f"El usuario {form.username.data} intenta regitrarse")
         try:
             usuario = Usuario()
             usuario.username = form.username.data
@@ -35,16 +36,16 @@ def nuevoUsuario():
             usuario.apellidos = form.apellidos.data
             usuario.set_password(form.password.data + PEEPER)
             usuario.create()
+            app.logger.info(f"El usuario {form.username.data} ha sido registrado")
             return redirect(url_for('login.login'))
         except Exception as e:
+            app.logger.warning(f"No se ha podido registrar al usuario {form.username.data}"+ e.__str__())
             error = "No se ha podido registrar usuario " # + e.__str__()
 
     return render_template("nuevoUsuario.html", form=form, error=error)
 
 @login.route("/login/", methods=["GET","POST"])
 def login():
-    app.logger.info("Mensaje de información")
-    msg = ""
     if current_user.is_authenticated:
         return redirect(url_for("private.indexcliente"))
     error = ""
@@ -55,7 +56,7 @@ def login():
             usuario = Usuario.get_by_username(username)
             try:
                 if usuario and usuario.check_password(form.password.data + PEEPER):
-                    app.logger.info(f"Inicio de sesión fallido del usuario {username}")
+                    app.logger.info(f"Inicio de sesión del usuario {username}")
                     login_user(usuario, False)
                     return redirect(url_for("private.indexcliente"))
                 else:

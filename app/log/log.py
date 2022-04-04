@@ -21,4 +21,4 @@ def configure_logging(name):
     logger.addHandler(consoleHandler)
 
     #Devolvemos el logger
-    return
+    return logger
