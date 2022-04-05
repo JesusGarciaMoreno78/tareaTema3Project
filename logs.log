@@ -1,0 +1,4 @@
+[2022-04-05 13:00:23,529.529]	 INFO [	app.indexcliente:26]	 Se busca cliente con DNI: 111111111y
+[2022-04-05 13:00:23,530.530]	 INFO [	app.indexcliente:33]	 No se encuentra cliente con DNI: 111111111y
+[2022-04-05 13:00:37,407.407]	 INFO [	app.indexcliente:26]	 Se busca cliente con DNI: 111111111
+[2022-04-05 13:00:37,408.408]	 INFO [	app.indexcliente:33]	 No se encuentra cliente con DNI: 111111111
