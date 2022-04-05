@@ -4,3 +4,4 @@ Flask-WTF
 psycopg2
 Flask-Migrate
 Flask-Login
+Flask-recaptcha

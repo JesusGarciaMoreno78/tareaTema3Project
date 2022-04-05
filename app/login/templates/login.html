@@ -16,6 +16,7 @@
             <form action="{{ url_for('login.login') }}" method="post">
                 {{ form.csrf_token() }}
                 {{ generarForm(form) }}
+                {{ recaptcha }}
                 <input type="submit" value="Iniciar Sesión" class="btn btn-primary"/>
             </form>
         </div>

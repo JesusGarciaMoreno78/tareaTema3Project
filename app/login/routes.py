@@ -29,13 +29,16 @@ def nuevoUsuario():
     form = RegistroUsuarioForm(request.form)
     if form.validate_on_submit():
         try:
-            usuario = Usuario()
-            usuario.username = form.username.data
-            usuario.nombre = form.nombre.data
-            usuario.apellidos = form.apellidos.data
-            usuario.set_password(form.password.data + PEEPER)
-            usuario.create()
-            return redirect(url_for('login.login'))
+            if app.recaptcha.verify():
+                usuario = Usuario()
+                usuario.username = form.username.data
+                usuario.nombre = form.nombre.data
+                usuario.apellidos = form.apellidos.data
+                usuario.set_password(form.password.data + PEEPER)
+                usuario.create()
+                return redirect(url_for('login.login'))
+            else:
+                error = "No eres Humano"
         except Exception as e:
             error = "No se ha podido registrar usuario " # + e.__str__()
     return render_template("nuevoUsuario.html", form=form, error=error)
@@ -48,16 +51,19 @@ def login():
     form = LogUsuarioForm(request.form)
     if form.validate_on_submit():
         try:
-            username = form.username.data
-            usuario = Usuario.get_by_username(username)
-            try:
-                if usuario and usuario.check_password(form.password.data + PEEPER):
-                    login_user(usuario, False)
-                    return redirect(url_for("private.indexcliente"))
-                else:
-                    error = "Usuario y/o contraseña incorrecta"
-            except Exception as e:
-                error = "no se pudo comprobar contraseña " # + e.__str__()
+            if app.recaptcha.verify():
+                username = form.username.data
+                usuario = Usuario.get_by_username(username)
+                try:
+                    if usuario and usuario.check_password(form.password.data + PEEPER):
+                        login_user(usuario, False)
+                        return redirect(url_for("private.indexcliente"))
+                    else:
+                        error = "Usuario y/o contraseña incorrecta"
+                except Exception as e:
+                    error = "no se pudo comprobar contraseña " # + e.__str__()
+            else:
+                error = "NO se ha comprobado su humnanidad"
         except Exception as e:
             error = "No se ha podido iniciar sesión "# + e.__str__()
     return render_template("login.html", form=form, error=error)
