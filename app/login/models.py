@@ -2,7 +2,7 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app import db
+from app import db, logger
 
 
 class Usuario(db.Model, UserMixin):
@@ -20,8 +20,11 @@ class Usuario(db.Model, UserMixin):
 
 # metodo: "create": almacena en base de datos el objeto
     def create(self):
-        db.session.add(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except Exception as e:
+            logger.exception(e.__str__())
 
 # metodo: "get_by_id": recibe un id y devuelve el usuario que corresponda con ese id (método estático)
     @staticmethod
@@ -32,6 +35,10 @@ class Usuario(db.Model, UserMixin):
     @staticmethod
     def get_by_username(username):
         return Usuario.query.filter_by(username=username).first()
+
+
+    def get_by_dni(dni):
+        return Usuario.query.filter_by(dni=dni).first()
 
 # metodo: "set_password": recibe un password y asigna al atributo password el resultado de la función hash, aplicando una salt y con método “pbkdf2:sh256:260000”
     def set_password(self, password):
